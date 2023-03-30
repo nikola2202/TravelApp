@@ -10,12 +10,13 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.travelapp.ui.fragment.HomeFragment"
+        android:name="com.example.travelapp.ui.fragment.home.HomeFragment"
         android:label="Home Fragment"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_attractionDetailFragment"
-            app:destination="@id/attractionDetailFragment" />
+            app:destination="@id/attractionDetailFragment"
+            />
     </fragment>
 
     <fragment
