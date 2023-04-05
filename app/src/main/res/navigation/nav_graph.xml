@@ -24,12 +24,5 @@
         android:name="com.example.travelapp.ui.fragment.AttractionDetailFragment"
         android:label="Details"
         tools:layout="@layout/fragment_attraction_detail">
-
-        <deepLink app:uri="https://travelApp.com/attraction/{attractionId}" />
-
-        <argument
-            android:name="attractionId"
-            app:argType="string" />
-
     </fragment>
 </navigation>
