@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.example.travelapp.R
 import com.example.travelapp.databinding.FragmentHomeBinding
 import com.example.travelapp.ui.fragment.BaseFragment
@@ -24,16 +26,17 @@ class HomeFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val homeAdapter = HomeFragmentAdapter { attractionId ->
+        val epoxyController = HomeFragmentController { attractionId ->
             navController.navigate(R.id.action_homeFragment_to_attractionDetailFragment)
             activityViewModel.onAttractionSelected(attractionId)
         }
 
-        binding.recyclerView.adapter = homeAdapter
+        binding.epoxyRecyclerView.setController(epoxyController)
+        binding.epoxyRecyclerView.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
 
         //Observing changes to the underlying list of data
         activityViewModel.attractionListLiveData.observe(viewLifecycleOwner) { attractions ->
-            homeAdapter.setData(attractions)
+            epoxyController.attractions = attractions
         }
 
     }

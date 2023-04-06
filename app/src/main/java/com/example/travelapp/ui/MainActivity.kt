@@ -1,5 +1,7 @@
 package com.example.travelapp.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -37,6 +39,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController,appBarConfig)
 
         viewModel.init(this)
+        viewModel.locationSelectedLiveData.observe(this) { attraction ->
+            val uri =
+                Uri.parse("geo:${attraction.location.latitude},${attraction.location.longitude}?z=9&q=${attraction.title}")
+            val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
+        }
 
     }
 
