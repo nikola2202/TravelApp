@@ -32,8 +32,6 @@ class HomeFragment: BaseFragment() {
         }
 
         binding.epoxyRecyclerView.setController(epoxyController)
-        binding.epoxyRecyclerView.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
-
         //Observing changes to the underlying list of data
         activityViewModel.attractionListLiveData.observe(viewLifecycleOwner) { attractions ->
             epoxyController.attractions = attractions

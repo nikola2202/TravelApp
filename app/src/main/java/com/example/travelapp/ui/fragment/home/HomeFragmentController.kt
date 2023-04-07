@@ -36,6 +36,17 @@ class HomeFragmentController(
             //todo
             return
         }
+
+        val firstGroup = attractions.filter { it.title.startsWith("s",true) || it.title.startsWith("D",true) }
+
+        HeaderEpoxyModel("Recently viewed").id("header_1").addTo(this)
+        firstGroup.forEach { attraction ->
+            AttractionEpoxyModel(attraction,onClickedCallback)
+                .id(attraction.id)
+                .addTo(this)
+        }
+
+        HeaderEpoxyModel("All attractions").id("header_1").addTo(this)
         attractions.forEach { attraction ->
             AttractionEpoxyModel(attraction,onClickedCallback)
                 .id(attraction.id)
