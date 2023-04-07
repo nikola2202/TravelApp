@@ -3,6 +3,7 @@ package com.example.travelapp.ui.fragment.home
 import com.airbnb.epoxy.EpoxyController
 import com.example.travelapp.R
 import com.example.travelapp.data.Attraction
+import com.example.travelapp.databinding.EpoxyModelHeaderBinding
 import com.example.travelapp.databinding.ViewHolderAttractionBinding
 import com.example.travelapp.ui.epoxy.ViewBindingKotlinModel
 import com.squareup.picasso.Picasso
@@ -54,6 +55,15 @@ class HomeFragmentController(
             root.setOnClickListener {
                 onClicked(attraction.id)
             }
+        }
+    }
+
+    data class HeaderEpoxyModel(
+        val headerText: String
+    ) : ViewBindingKotlinModel<EpoxyModelHeaderBinding>(R.layout.epoxy_model_header) {
+
+        override fun EpoxyModelHeaderBinding.bind() {
+            headerTextView.text = headerText
         }
     }
 
